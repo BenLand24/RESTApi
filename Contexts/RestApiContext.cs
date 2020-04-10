@@ -12,6 +12,7 @@ namespace restapi.Contexts
         public DbSet<Battery> Batteries { get; set; }
         public DbSet<Column> Columns { get; set; }
         public DbSet<Elevator> Elevators { get; set; }
+        public DbSet<Intervention> Interventions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +32,10 @@ namespace restapi.Contexts
                 .HasKey(x => x.id);
             modelBuilder.Entity<Elevator>().Property<long>("column_id");
             modelBuilder.Entity<Elevator>().HasOne(c => c.column).WithMany().HasForeignKey("column_id");
+
+            modelBuilder.Entity<Intervention>()
+                .ToTable("interventions")
+                .HasKey(x => x.id);
         }
     }
 }
