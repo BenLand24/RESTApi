@@ -12,5 +12,7 @@ public class Elevator
     public string certificate_inspect { get; set; }
     public string info { get; set; }
     public string notes { get; set; }
-    public Column column { get; set; }
+    public long? column_id { get; set; }
+    
+    public virtual Column Column { get; set; }
 }

@@ -1,8 +1,13 @@
+using System;
+using System.Data;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+// using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using restapi.Contexts;
+// using restapi.Models;
 using restapi.Payloads;
 
 namespace restapi.Controllers
@@ -40,7 +45,7 @@ namespace restapi.Controllers
         }
 
         // GET: api/Batteries/{id}/status
-        [HttpGet("{id}/status")]
+        [HttpGet("{id}/Status")]
         public async Task<ActionResult<string>> GetBatteryStatus([FromRoute] long id)
         {
             var myBattery = await this.context.Batteries.FindAsync(id);
@@ -54,7 +59,7 @@ namespace restapi.Controllers
         }
 
         // POST: api/Batteries/{id}/status
-        [HttpPut("{id}/status")]
+        [HttpPut("{id}/Status")]
         public async Task<ActionResult> UpdateBatteryStatus([FromRoute] long id, [FromBody] UpdateStatusPayload payload)
         {
             var myBattery = await this.context.Batteries.FindAsync(id);

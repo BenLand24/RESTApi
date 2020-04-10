@@ -1,8 +1,12 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+// using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using restapi.Contexts;
+// using restapi.Models;
 using restapi.Payloads;
 
 namespace restapi.Controllers
@@ -51,6 +55,13 @@ namespace restapi.Controllers
             }
 
             return myElevator.status;
+        }
+        // GET: api/Elevators/ListNonOperational
+        [HttpGet("ListNonOperational")]
+        public List<Elevator> GetElevatorsListNonOperational()
+        {
+            var elevators = this.context.Elevators.Where(e => e.status != "active").ToList();
+            return elevators;
         }
 
         // POST: api/Elevators/{id}/status
