@@ -22,7 +22,7 @@ namespace restapi.Controllers
         }
 
         // GET: api/Employees/Authenticate
-        [HttpGet("Authenticate")]
+        [HttpPost("Authenticate")]
         public async Task<ActionResult<Employee>> AuthenticateEmployee([FromBody] VerifyEmployeePayload payload)
         {
             var myEmployee = await this.context.Employees.Where(x => x.email.Equals(payload.email)).FirstOrDefaultAsync();
