@@ -21,19 +21,26 @@ namespace restapi.Controllers
             this.context = context;
         }
 
-        // GET: api/Employees/Authenticate
-        [HttpPost("Authenticate")]
-        public async Task<ActionResult<Employee>> AuthenticateEmployee([FromBody] VerifyEmployeePayload payload)
+        // GET: api/Employee
+        [HttpGet]
+        public ActionResult<List<Employee>> GetAll()
         {
-            var myEmployee = await this.context.Employees.Where(x => x.email.Equals(payload.email)).FirstOrDefaultAsync();
-            if(myEmployee != null)
-            {
-                return myEmployee;
-            }
-            else
+            var employees = context.Employees;
+            List<Employee> list_employees = new List<Employee>();
+
+            if (employees == null)
             {
                 return NotFound();
             }
+            foreach (var employee in employees)
+            {
+
+
+                list_employees.Add(employee);
+
+            }
+
+            return list_employees;
         }
     }
 }
